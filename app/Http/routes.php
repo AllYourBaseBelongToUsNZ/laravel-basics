@@ -23,8 +23,12 @@ Route::get('/', function () {
 
     //return "hello World";
 
-	$data = ['name'=>'laurie','email'=>'lauriewilliamz@gmail.com'];
-	return View::make('hello')->with($data);
+	$data = 
+	['name'=>'laurie',
+	'email'=>'lauriewilliamz@gmail.com',
+	'location' =>'New Zealand',
+	'last_name'=>'Williams'];
+	return View::make('hello')->withData($data);
 
 });
 
