@@ -12,31 +12,22 @@
 */
 
 Route::get('/', function () {
+
+	return View::make ('todos.index');
     
-    //return view('welcome');
-
-    //return View::make('welcome',array('name' =>'laurie','age'=>'27'));
-
-    //return View::make('welcome')->with('name','laurie');
-
-    //return View::make('welcome')->withName('laurie');
-
-    //return "hello World";
-
-	$data = 
-	['name'=>'laurie',
-	'email'=>'lauriewilliamz@gmail.com',
-	'location' =>'New Zealand',
-	'last_name'=>'Williams'];
-	return View::make('hello')->withData($data);
-
 });
+
+Route::get('/todos', function(){
+
+	return View::make('todos.index');
+});
+
 
 //new route for passing variables
 
-Route::get('/hello/{name?}', function ($name = "not laurie") {
+Route::get('/todos/{id}', function ($id) {
 
-	return View::make('hello')->with('name',$name);
+	return View::make('todos.show')->withId($id);
 
 });
 
