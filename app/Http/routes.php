@@ -15,8 +15,18 @@ Route::get('/', 'TodoListController@index');
 
 Route::resource('todos','TodoListController');
 
-//Route::get('/todos','TodoListController@index');
+Route::get('/db',function(){
 
+	//return DB::select('select database();');
+
+	$result =  DB::table('todo_lists')->where('name','Your List')->first();
+
+	return $result->name;
+
+
+});
+
+//Route::get('/todos','TodoListController@index');
 
 //new route for passing variables
 

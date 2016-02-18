@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\TodoList; 
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -9,18 +11,24 @@ use App\Http\Controllers\Controller;
 
 class TodoListController extends Controller
 {
-    public function index(){
-
-    	
-    	//controller routes to the index.blade view in the todo's folder
-
-    	return View('todos.index');
-
+    public function index()
+    {
+  
+        $todo_lists = TodoList::all();
+        return View('todos.index')->with('todo_lists', $todo_lists);
     }
 
     public function create(){
 
     	//create a new todo list.shows form
+
+        $list = new TodoList();
+
+        $list->name = "Kylos Rens List";
+
+        $list->save();
+
+        return "Create a new list";
 
     }
 
@@ -35,7 +43,9 @@ class TodoListController extends Controller
 
     	//shows todo list item by id
 
-    	return View('todos.show')->withId($id);
+        $list = TodoList::findOrFail($id);
+
+    	return View('todos.show')->withList($list);
 
 
     }
