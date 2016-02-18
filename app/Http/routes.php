@@ -11,25 +11,16 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', 'TodoListController@index');
 
-	return View::make ('todos.index');
-    
-});
+Route::resource('todos','TodoListController');
 
-Route::get('/todos', function(){
-
-	return View::make('todos.index');
-});
+//Route::get('/todos','TodoListController@index');
 
 
 //new route for passing variables
 
-Route::get('/todos/{id}', function ($id) {
-
-	return View::make('todos.show')->withId($id);
-
-});
+//Route::get('/todos/{id}','TodoListController@show');
 
 /*
 |--------------------------------------------------------------------------
