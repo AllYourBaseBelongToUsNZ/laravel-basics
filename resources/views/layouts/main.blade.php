@@ -5,10 +5,10 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Laravel Demo </title>
-{!! Html::style('css/foundation.min.css') !!}
+{!! Html::style('css/foundation.css') !!}
 {!! Html::style('css/foundation-flex.css') !!}
 
-<link href='http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css' rel='stylesheet' type='text/css'>
+{!! Html::style('http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css')!!}
  
 </head>
 <body>
@@ -38,6 +38,13 @@
     <div class="row">
         <div class="large-12">
             @yield('content')
+
+            @if(Session::has('message'))
+<div data-alert class="alert-box success radius">
+                {{{Session::get('message')}}}
+             </div>   
+
+            @endif
         </div>
     </div>
  
@@ -54,13 +61,16 @@
             </div>
         </div>
     </footer>
-
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 {!! Html::script('js/app.js') !!}
-{!! Html::script('js/foundation.min.js') !!}
+{!! Html::script('js/foundation.js') !!}
 
 <script>
-      $(document).foundation();
-    </script>
+$(function() {
+   $(document).foundation();
+});
+
+</script>
 
 </body>
 </html>

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
+
+
 use App\TodoList; 
 
 use Illuminate\Http\Request;
@@ -11,6 +14,15 @@ use App\Http\Controllers\Controller;
 
 class TodoListController extends Controller
 {
+    
+   public function _construct()
+    {
+        
+
+        $this->beforeFilter('csrf', array('on' => 'post'));
+
+    }
+
     public function index()
     {
   
@@ -22,19 +34,42 @@ class TodoListController extends Controller
 
     	//create a new todo list.shows form
 
-        $list = new TodoList();
-
-        $list->name = "Kylos Rens List";
-
-        $list->save();
-
-        return "Create a new list";
+        return View('todos.create');
 
     }
 
-    public function store(){
+    public function store(Request $request){
 
     	//stores new todo list
+
+        //rules 
+
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|unique:todo_lists,name|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            
+            return redirect('todos/create')->withErrors($validator)->withInput();
+        }
+
+        //$rules = array('title'=>array('required','unique:todo_lists,name'));
+
+        //$validator = validator::make(Input::all,$rules);
+
+        
+
+        $name = $request->input('title');
+
+        $list = new TodoList();
+
+        $list->name = $name;
+
+        $list->save();
+
+        return redirect()->route('todos.index')->withMessage('List was successfully created');
+
+
 
 
     }

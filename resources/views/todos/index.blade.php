@@ -5,8 +5,15 @@
 
   @foreach ($todo_lists as $list)
   <ul>
-    <li>{{{$list->name}}}</li>
+ 
+  {{ Html::linkRoute('todos.show', $list->name, array($list->id)) }}
+
+
   </ul>
+
+
   @endforeach
+
+  {{ Html::linkRoute('todos.create','Create New List',null,['class'=>'success button'])}}
 
 @stop

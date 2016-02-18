@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', 'TodoListController@index');
 
-Route::resource('todos','TodoListController');
 
 Route::get('/db',function(){
 
@@ -44,5 +42,7 @@ Route::get('/db',function(){
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+    Route::get('/', 'TodoListController@index');
+
+Route::resource('todos','TodoListController');
 });

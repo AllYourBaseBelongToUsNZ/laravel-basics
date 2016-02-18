@@ -1,7 +1,10 @@
 @extends ('layouts.main')
 @section('content')
 
- <h3>{{{$list->name}}}</h3>
-<br>
- Shows the list item by ID
+ <div class="large-12 columns">
+
+	<h3>{{{$list->name}}}</h3>
+	{{ Html::linkRoute('todos.index','Back')}}
+
+</div>
 @stop
