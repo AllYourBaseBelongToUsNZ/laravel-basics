@@ -10,7 +10,11 @@
 
 {!! Html::style('css/foundation.css') !!}
 {!! Html::style('css/normalise.css') !!}
+{!! Html::style('css/styles.css') !!}
 {!! Html::style('http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css')!!}
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+
  
 </head>
 <body>
@@ -44,19 +48,20 @@
   </section>
 </nav>
 
+    @if(Session::has('message'))
+        <div data-alert class="alert-box success radius">
+                {{{Session::get('message')}}}
+        </div>   
+
+    @endif
+
     <!-- End Header and Nav -->
 
     <div class="row">
         <div class="large-12">
 
-            @if(Session::has('message'))
-                <div data-alert class="alert-box success radius">
-                {{{Session::get('message')}}}
-             </div>   
 
-            @endif
 
-        
             @yield('content')
 
             
@@ -77,9 +82,11 @@
         </div>
     </footer>
 
-{!! Html::script('js/app.js') !!}
-{!! Html::script('js/foundation.min.js') !!}
-{{ HTML::script('js/vendor/jquery.js') }}
+{{ HTML::script('js/vendor/jquery.js') }}    
+{{Html::script('js/foundation.min.js') }}
+{{ Html::script('js/app.js') }}
+
+
 {{ HTML::script('js/vendor/modernizr.js') }}
 {{ HTML::script('js/vendor/fastclick.js') }}
 
