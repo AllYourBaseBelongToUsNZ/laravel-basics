@@ -124,9 +124,11 @@ class TodoListController extends Controller
 
     }
 
-    public function destroy($id){
+    public function destroy(Request $request, $id){
 
-    	//delete list item by id
+    	$todo_lists = TodoList::findOrFail($id)->delete();
+
+        return redirect()->route('todos.index')->withMessage('List item has been deleted');
     }
 
 

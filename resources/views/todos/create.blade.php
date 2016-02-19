@@ -6,7 +6,7 @@
 
 	{{{Form::text('title')}}}
 
-	{!!$errors->first('title','<div data-alert class="alert-box">:message</div>')!!}
+	{{$errors->first('title','<div data-alert class="alert-box">:message</div>')}}
 
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
