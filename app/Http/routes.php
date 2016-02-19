@@ -24,6 +24,8 @@ Route::get('/db',function(){
 
 });
 
+
+
 //Route::get('/todos','TodoListController@index');
 
 //new route for passing variables

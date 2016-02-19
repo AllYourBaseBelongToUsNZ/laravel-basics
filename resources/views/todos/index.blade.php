@@ -4,11 +4,11 @@
 
 
   @foreach ($todo_lists as $list)
-  <ul>
  
-  {{ Html::linkRoute('todos.show', $list->name, array($list->id)) }}
+  <h3>{{ Html::linkRoute('todos.show', $list->name, array($list->id)) }}</h3>
 
-
+  <ul class="no-bullet button-groups">
+  {{Html::linkRoute('todos.edit','Edit',[$list->id],['class'=>'small warning button'])}}
   </ul>
 
 

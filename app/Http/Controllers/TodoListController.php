@@ -17,10 +17,8 @@ class TodoListController extends Controller
     
    public function _construct()
     {
-        
-
-        $this->beforeFilter('csrf', array('on' => 'post'));
-
+        // Perform CSRF check on all post/put/patch/delete requests
+        $this->beforeFilter('csrf', array('on' => array('post', 'put', 'patch', 'delete')));
     }
 
     public function index()
@@ -89,12 +87,41 @@ class TodoListController extends Controller
 
     	//edit todo list item by id. edit form
 
+        $lists = TodoList::findOrFail($id);
+
+        return View('todos.edit')->withLists($lists);
+
 
     }
 
-    public function update($id){
+    public function update(Request $request, $id){
 
-    	//updates to do list by id using a form
+      
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|unique:todo_lists',
+        ]);
+
+    	 if ($validator->fails()) {
+
+           
+            return redirect()->route('todos.edit',[$id])->withErrors($validator)->withInput();
+            
+        }
+
+            $name = $request->input('name');
+
+            $list = TodoList::findOrFail($id);
+
+            $list->name = $name;
+
+            $list->update();
+
+            return redirect()->route('todos.index')->withMessage('List was successfully updated');
+
+
+
+
     }
 
     public function destroy($id){
