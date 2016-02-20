@@ -4,16 +4,14 @@
 {{Form::model($lists, array('method'=>'put','route' => array('todos.update', $lists->id)))}}
 
 
+<div class="section-list"> 
+	
 	<h3>{{Form::label('title','List Title')}}</h3>
+		
+		@include('todos.partials._form')
 
-	{{{Form::text('name')}}}
+</div>	
 
-	{!!$errors->first('name','<div data-alert class="alert-box alert radius">:message</div>')!!}
-
-	<input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-	{{Form::submit('update',array('class'=>'button'))}}
-
-{{Form::close()}}
+	{{Form::close()}}
 
 @stop

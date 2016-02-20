@@ -43,7 +43,7 @@ class TodoListController extends Controller
         //rules 
 
         $validator = Validator::make($request->all(), [
-            'title' => 'required|unique:todo_lists,name|max:255',
+            'name' => 'required|unique:todo_lists|max:255',
         ]);
 
         if ($validator->fails()) {
@@ -57,7 +57,7 @@ class TodoListController extends Controller
 
         
 
-        $name = $request->input('title');
+        $name = $request->input('name');
 
         $list = new TodoList();
 
