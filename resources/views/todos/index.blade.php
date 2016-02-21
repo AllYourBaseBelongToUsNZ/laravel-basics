@@ -4,7 +4,7 @@
 
 
   @foreach ($todo_lists as $list)
-  <div class="section-list">
+
   <h3>{{ Html::linkRoute('todos.show', $list->name, array($list->id)) }}</h3>
 
    <ul class="button-group">
@@ -14,7 +14,7 @@
     <li>{{Form::close()}}</li>
   </ul>
 
- </div>
+
 
 
   @endforeach

@@ -3,7 +3,15 @@
 
  <div class="large-12 columns">
 
-	<h3>{{{$list->name}}}</h3>
+	<h2>{{{$list->name}}}</h2>
+
+		@foreach($item as $items) 
+
+			<h4>{{{$items->content}}}</h4>
+
+		@endforeach
+
+
 	{{ Html::linkRoute('todos.index','Back')}}
 
 </div>

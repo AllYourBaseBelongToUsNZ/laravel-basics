@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class TodoList extends Model
 {
-    public function listitems(){
+    public function listItems(){
 
-    	return $this->hasMany('TodoItem');
+    	return $this->hasMany('App\TodoItem');
     }
 }

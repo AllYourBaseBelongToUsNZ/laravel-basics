@@ -24,6 +24,10 @@ Route::get('/db',function(){
 
 });
 
+// DB::listen(function($sql) {
+//     var_dump($sql);
+// });
+
 
 
 //Route::get('/todos','TodoListController@index');

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Validator;
 
-
-use App\TodoList; 
+use App\TodoList;
+use \App\TodoItem;
 
 use Illuminate\Http\Request;
 
@@ -78,7 +78,11 @@ class TodoListController extends Controller
 
         $list = TodoList::findOrFail($id);
 
-    	return View('todos.show')->withList($list);
+        $item = $list->listitems()->get();
+
+        //return $item;
+
+    	return View('todos.show')->withList($list)->withItem($item);
 
 
     }
