@@ -11,8 +11,17 @@
 
 		@endforeach
 
+		<ul class = "no-bullet button-group">
 
-	{{ Html::linkRoute('todos.index','Back')}}
+			<li>
+
+			 {{Html::linkRoute('todos.items.create','Add new item',[$list->id],['class'=>'success button'])}} 
+			</li>
+
+		</ul>
+
+
+	{{ Html::linkRoute('todos.index','Back',null,['class'=>'button'])}}
 
 </div>
 @stop

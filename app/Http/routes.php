@@ -24,11 +24,6 @@ Route::get('/db',function(){
 
 });
 
-// DB::listen(function($sql) {
-//     var_dump($sql);
-// });
-
-
 
 //Route::get('/todos','TodoListController@index');
 
@@ -48,7 +43,18 @@ Route::get('/db',function(){
 */
 
 Route::group(['middleware' => ['web']], function () {
+
     Route::get('/', 'TodoListController@index');
 
-Route::resource('todos','TodoListController');
+	Route::resource('todos','TodoListController');
+
+	Route::resource('todos.items','TodoItemController',['except'=>['index','show']]);
+
+		// Event::listen('illuminate.query', function($query)
+		// {
+		//     var_dump($query);
+		// });
+
+
+
 });
